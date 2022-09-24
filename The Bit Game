@@ -1,0 +1,18 @@
+
+class Solution{
+    public:
+    int minSubset(vector<int> &arr,int N){
+        sort(arr.begin(),arr.end(),greater<int>());
+        vector<long long> prefix(N,0);
+        prefix[N-1] = arr[N-1];
+        for(int i=N-2;i>=0;i--) prefix[i] = prefix[i+1] + 1LL*arr[i];
+        long long sum = arr[0];
+        for(int i=1;i<N;i++){
+            if(sum > prefix[i]){
+                return i;
+            }
+            sum += 1LL*arr[i];
+        }
+        return 1;
+    }
+};
