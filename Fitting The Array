@@ -1,0 +1,34 @@
+
+class Solution{
+    
+   
+    // Function for finding maximum and value pair
+    public static boolean isFit (int arr[], int brr[], int n) {
+        
+        int N=arr.length;
+        boolean flag=false;
+        Arrays.sort(arr);
+        Arrays.sort(brr);
+          for(int i=0;i<N;i++){
+            
+                if(arr[i]<=brr[i])
+                    flag= true;
+               
+            }
+            
+       
+        for(int i=0;i<N;i++){
+            
+                if(arr[i]>brr[i])
+                    flag= false;
+               
+            }
+            if(flag==false)
+               return flag;
+            return flag;
+    }
+   
+    
+    
+    
+}
