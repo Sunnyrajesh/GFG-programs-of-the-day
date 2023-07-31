@@ -1,0 +1,44 @@
+class Solution {
+    // Function to find a continuous sub-array which adds up to a given number.
+    static ArrayList<Integer> subarraySum(int[] arr, int n, int S) {
+        // Initialize variables to track the window and sum.
+        int left = 0;
+        int right = 0;
+        int sum = 0;
+        boolean found = false; // Flag to indicate if subarray is found.
+        
+        // Loop through the array elements to find the subarray.
+        while (right < n) {
+            // Add the current element to the sum.
+            sum += arr[right];
+            
+            // If the sum becomes greater than or equal to S, shrink the window.
+            while (sum > S && left <= right) {
+                sum -= arr[left];
+                left++;
+            }
+            
+            // If the sum becomes equal to S, return the subarray indexes.
+            if (sum == S) {
+                ArrayList<Integer> result = new ArrayList<>();
+                result.add(left + 1); // 1-based indexing
+                result.add(right + 1); // 1-based indexing
+                found = true; // Set the flag to true as subarray is found.
+                return result;
+            }
+            
+            // Move the right pointer to expand the window.
+            right++;
+        }
+        
+        // If no subarray is found, return -1.
+        if (!found) {
+            ArrayList<Integer> result = new ArrayList<>();
+            result.add(-1);
+            return result;
+        }
+        
+        // This line will never be reached, just to satisfy the Java compiler.
+        return new ArrayList<>();
+    }
+}
